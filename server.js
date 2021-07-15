@@ -8,7 +8,8 @@ const app = express();
 app.get("/", (req, res) => { 
     res.render("home");
 });
-
+//Static
+app.use(express.static('public'));
 
 //set template engine
 app.use(expressLayout);
