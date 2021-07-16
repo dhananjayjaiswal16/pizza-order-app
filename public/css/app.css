@@ -22,6 +22,15 @@ nav li a:hover {
   background-color: #f8f8f8;
 }
 
+.btn-primary {
+  background-color: #fe5f1e;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #b23301;
+}
+
 .size {
   background-color: #f8f8f8;
 }
@@ -35,4 +44,23 @@ nav li a:hover {
   background-color: #fe5f1e;
   border-color: #fff;
   color: #fff;
+}
+
+section.cart {
+  background-color: #f8f8f8;
+}
+
+.amount {
+  color: #fe5f1e;
+}
+
+.login {
+  background-color: #f8f8f8;
+  height: calc(100vh - 90px);
+}
+.login a {
+  color: #fe5f1e;
+}
+.login a:hover {
+  color: #b23301;
 }

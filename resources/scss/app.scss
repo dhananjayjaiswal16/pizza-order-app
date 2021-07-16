@@ -25,12 +25,22 @@ nav li a{
     background-color: $secondary;
 }
 
+//button animation
+.btn-primary{
+    background-color: $primary;
+    color: $pure;
+    transition: $smooth;
+    &:hover{
+        background-color: $primary-hover;
+    }
+}
+
 //menu-cards
 .size{
     background-color: $secondary;
 }
 
-//Add button
+//Add button to Menu
 .add-to-cart{
     border: 2px solid $primary;
     color: $primary;
@@ -39,5 +49,27 @@ nav li a{
         background-color: $primary;
         border-color: $pure;
         color: $pure;
+    }
+}
+
+//Cart
+section.cart{
+    background-color: $secondary;
+}
+
+.amount{
+    color : $primary;
+}
+
+
+//Login | Register
+.login{
+    background-color: $secondary;
+    height: calc(100vh - 90px);
+    a{
+        color: $primary;
+        &:hover{
+            color: $primary-hover;
+        }
     }
 }
