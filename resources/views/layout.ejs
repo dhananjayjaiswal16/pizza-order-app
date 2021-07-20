@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJ's Pizza App</title>
-    <link rel='icon' href='favicon.png' type='image/png'>
+    
     <!-- ************************************************GOOGLE FONTS******************************************** -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
@@ -21,7 +21,7 @@
     <!-- ***********************************NAVBAR*************************** -->
     <nav class="container mx-auto flex items-center justify-between py-4">
         <div>
-            <img src="/img/logo.png" alt="">
+            <a href="/"><img src="/img/logo.png" alt=""></a>
         </div>
         <div>
             <ul class="flex items-center">
@@ -29,7 +29,11 @@
                 <li class="ml-6 "><a href="">Offers</a></li>
                 <li class="ml-6 "><a href="/register">Register</a></li>
                 <li class="ml-6 "><a href="/login">Login</a></li>
-                <li class="ml-6"><a href="/cart" class="inline-block px-4 py-1 rounded-full"><img src="/img/cart.png" alt=""></a></li>
+                <li class="ml-6"><a href="/cart" class="inline-block px-4 py-1 rounded-full flex items-center">
+                    <span class="cartCounter text-white font-bold pr-1">
+                        <%= session.cart? session.cart.totalQty : '' %> 
+                    </span>
+                    <img src="/img/cart.png" alt=""></a></li> 
             </ul>
         </div>
     </nav>
