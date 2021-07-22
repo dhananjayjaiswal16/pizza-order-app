@@ -9,13 +9,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
 const MongoDbStore = require('connect-mongo');
-
-
-
-
-
-
-app.use(express.json());
+const passport = require('passport');
 
 
 //database-connect
@@ -29,7 +23,6 @@ connection.once('open', () => {
 })
 
 
-
 // Session config
 app.use(session({
     secret: process.env.COOKIE_SECRET,
@@ -41,21 +34,38 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // cookie-expiry-time: 24 hour
 }));
 
-//global middleware for sessions
-app.use((req, res, next) => {
-    res.locals.session = req.session;
-    next()
-});
+
+//passport
+const passportInit = require('./app/config/passport');
+passportInit(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use(flash());
+app.use(express.urlencoded({extended: false}))
+app.use(express.json());
+
+
+//global middleware for sessions
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    res.locals.user = req.user;
+    next();
+});
+
+
+
+
+//Static Files
+app.use(express.static('public'));
+
 //set template engine
 app.use(expressLayouts);
 app.set('views', path.join(__dirname, '/resources/views'));
 app.set('view engine', 'ejs');
 
-//Static Files
-app.use(express.static('public'));
+
 
 
 //Routes
