@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Noty from 'noty';
+import { initAdmin } from './admin';
+
 let addToCart =  document.querySelectorAll('.add-to-cart');
 let cartCounter = document.querySelector('.cartCounter');
 
@@ -8,7 +10,6 @@ function updateCart(pizza){
     //Ajax call
     axios.post('/update-cart', pizza)
     .then(res => {
-        
         cartCounter.innerText = res.data.totalQty
         new Noty({
             type: 'success',
@@ -25,8 +26,6 @@ function updateCart(pizza){
 
 
 
-
-
 addToCart.forEach((btn) => {
     btn.addEventListener("click", (e) => {
         //Fetch data sent from database
@@ -34,3 +33,19 @@ addToCart.forEach((btn) => {
         updateCart(pizza) 
     });
 })
+
+
+
+//alert msg in order.ejs 
+let alerts_msg = document.querySelector('#success-alert');
+console.log("Alerts" + alerts_msg);
+if(alerts_msg){ 
+    console.log("Alerts inside If" + alerts_msg);
+    setTimeout(() => {
+        alerts_msg.remove()
+    }, 1800)
+}
+
+
+
+initAdmin()

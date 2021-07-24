@@ -3,7 +3,6 @@ const express = require('express');
 const ejs = require('ejs');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
-
 const app = express();
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -42,9 +41,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+
 app.use(flash());
 app.use(express.urlencoded({extended: false}))
 app.use(express.json());
+
 
 
 //global middleware for sessions
@@ -53,7 +54,6 @@ app.use((req, res, next) => {
     res.locals.user = req.user;
     next();
 });
-
 
 
 
@@ -70,8 +70,6 @@ app.set('view engine', 'ejs');
 
 //Routes
 require('./routes/web.js')(app);
-
-
 
 
 const PORT = process.env.PORT || 3000;

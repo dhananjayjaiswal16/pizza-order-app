@@ -349,3 +349,7 @@ section.cart {
   border-radius: 50px !important;
   padding-left: 10px !important;
 }
+
+.link {
+  color: #fe5f1e;
+}

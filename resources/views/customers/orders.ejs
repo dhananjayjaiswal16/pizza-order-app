@@ -1,0 +1,48 @@
+<section class="orders light-section " >
+    <div class="container mt-12 mx-auto">
+        <h1 class="text-lg mx-auto font-bold">All Orders</h1>
+        <!-- For success msg -->
+        <% if(messages.success) {%>
+            <div id="success-alert" class="px-4 py-3 flex items-center bg-green-500 text-white font-bold" role="alert">
+                <i class="fas fa-check text-lg mr-2"></i>
+                <p><%= messages.success %></p>
+            </div>
+        <% } %>
+        <table class="w-full bg-white table-auto">
+            <thead>
+                <tr>
+                    <th class="text-left px-4 py-2">Order</th>
+                    <th class="text-left px-4 py-2">Phone No.</th>
+                    <th class="text-left px-4 py-2">Address</th>    
+                    <th class="text-left px-4 py-2">Time</th>    
+                </tr>    
+            </thead>
+            <tbody>
+                <% if(orders.length){ %>
+                    <% orders.forEach((order) => { %>
+                        <tr>
+                            <td class="border px-4 py-2">
+                                <a class="link" href="/">
+                                    <%= order.userId %>
+                                </a>
+                            </td>
+                            <td class="border px-4 py-2">
+                                <%= order.phone %>
+                            </td>
+                            <td class="border px-4 py-2">
+                                <%= order.address %>
+                            </td>
+                            <td class="border px-4 py-2">
+                                <%= moment(order.createdAt).format('hh:mm A') %> 
+                            </td>
+                        </tr>
+                    <% }) %> 
+                <% } else {%>
+                    <tr>
+                        <td class="p-4"> Orders 404 😛 </td> 
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</section>
