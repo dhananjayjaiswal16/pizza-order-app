@@ -1,0 +1,19 @@
+<section class="orderStatus">
+    <div class="container mx-auto">
+        <div class="status-box w-2/3 mx-auto pt-24">
+            <div class="flex items-center justify-between mb-12">
+                <h1 class="text-2xl font-bold">Delivery Status</h1>
+                <h6 class="bg-white rounded-full text-sm">Order ID : <span class="text-green-600"><%= order._id %></span> </h6>
+                <input id="current-order" type="hidden" value="<%= JSON.stringify(order) %>">
+             </div>
+            
+            <ul>
+                <li data-current_status="order_placed" class="status_line text-xl pb-16"><span class="dots">Order Placed</span></li>
+                <li data-current_status="confirmed" class="status_line text-xl pb-16"><span class="dots">Order Confirmed</span></li>
+                <li data-current_status="prepared" class="status_line text-xl pb-16"><span class="dots">Preparing</span></li>
+                <li data-current_status="for_delivery" class="status_line text-xl pb-16"><span class="dots">Out for Delivery</span></li>
+                <li data-current_status="delivered" class="status_line text-xl"><span class="dots">Delivered</span></li> 
+            </ul>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Noty from 'noty';
 import { initAdmin } from './admin';
+import moment from 'moment'; 
 
 let addToCart =  document.querySelectorAll('.add-to-cart');
 let cartCounter = document.querySelector('.cartCounter');
@@ -48,4 +49,74 @@ if(alerts_msg){
 
 
 
-initAdmin()
+
+
+//Render Updated status front End
+let allStatus = document.querySelectorAll('.status_line');
+
+let current_order = document.getElementById('current-order'); 
+let order;
+if(current_order){
+    order = current_order.value;
+} else {
+    order = null;
+}
+order = JSON.parse(order);
+let time = document.createElement('small'); 
+
+function updateStatus(order) {
+//     console.log("Order : " +order);
+    allStatus.forEach((status) => {
+        status.classList.remove('completed');
+        status.classList.remove('current');
+    })
+    let completed = true;
+    allStatus.forEach((status)=> {
+        let dataValue = status.dataset.current_status;
+        if(completed){
+            status.classList.add('completed');
+        }
+        if(dataValue === order.status){ 
+
+            completed = false;
+            time.innerHTML = moment(order.updatedAt).format('hh:mm A');
+            status.appendChild(time);
+            if(status.nextElementSibling){
+                status.nextElementSibling.classList.add('current'); 
+            }
+        }
+    })    
+}
+
+updateStatus(order); 
+
+
+//Socket.io
+// Socket
+let socket = io()
+initAdmin(socket);
+// Join
+if(order) {
+    socket.emit('join', `order_${order._id}`)
+}
+
+let adminAreaPath = window.location.pathname
+
+if(adminAreaPath.includes('admin')) {
+    socket.emit('join', 'adminRoom');
+}
+
+
+socket.on('orderUpdated', (data) => {
+    const updatedOrder = { ...order }
+    updatedOrder.updatedAt = moment().format()
+    updatedOrder.status = data.status
+    updateStatus(updatedOrder)
+    new Noty({
+        type: 'success',
+        timeout: 1000,
+        progressBar: false,
+        layout: 'bottomRight',
+        text: " Order has been updated"
+      }).show();
+}) 

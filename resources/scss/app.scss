@@ -91,3 +91,98 @@ section.cart{
 .link{
     color: $primary;
 }
+
+.orderStatus{
+    background-color: $secondary;
+    min-height: calc(100vh - 86px);
+}
+
+.status-box ul{
+    margin-left: 93px; 
+}
+//single selection page Doc
+.dots{
+    position: relative;
+    padding-left: 25px;
+}
+
+.dots:before{
+   font-family: "Font Awesome 5 Free";
+   font-size: 40px;
+   font-weight: 600;
+    position: absolute;
+    left: -90px;
+    top: 50%;
+    color: inherit;
+    transform: translateY(-50%);
+}
+
+.dots:after{
+   content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    background-color: $dark;
+    width: 10px;
+    height: 10px;
+    transform: translateY(-50%);
+    border-radius: 100%;
+    box-shadow: 0 0 1px 10px $secondary; //so that vertical lines do not touch the dots
+}
+
+.status_line:nth-child(1) span:before {
+    content: '\f46c';
+}
+.status_line:nth-child(2) span:before{
+    content: '\f560';
+}
+.status_line:nth-child(3) span:before{
+    content: '\f818';
+}
+.status_line:nth-child(4) span:before{
+    content: '\f0d1';
+}
+.status_line:nth-child(5) span:before{
+    content: '\f582'; 
+}
+
+.status_line{
+    position: relative;
+}
+//Vertical  Line
+.status_line:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -6px;
+    width: 2px;
+    height: 100%;
+    background-color: $dark;
+    margin-top: 10px;
+}
+//To avoid extra line at the end
+.status-box ul li:nth-child(5) span:after {
+    box-shadow:0 20px 1px 20px $secondary;
+}
+//To change colour of completed order
+.completed::before{
+    background-color: $gray;
+}
+.completed span::after{
+    background-color: $gray;
+}
+.completed span{  
+    color: $gray;
+}
+
+//Current Status 
+.current span{
+    color: $primary;
+}
+.current span::after{
+    background-color: $primary;
+}
+
+.status_line small{ 
+    float: right;
+}
