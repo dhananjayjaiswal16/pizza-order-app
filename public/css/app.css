@@ -282,6 +282,18 @@ body {
   color: #232323;
 }
 
+@media (max-width: 1650px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 790px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
 nav li:last-child a {
   background-color: #fe5f1e;
 }
@@ -393,6 +405,11 @@ section.cart {
   box-shadow: 0 0 1px 10px #f8f8f8;
 }
 
+@media (max-width: 768px) {
+  .status_line span::before {
+    font-size: 30px;
+  }
+}
 .status_line:nth-child(1) span:before {
   content: "";
 }

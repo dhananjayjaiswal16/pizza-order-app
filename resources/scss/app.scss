@@ -8,6 +8,20 @@ body{
     color: $dark;
 }
 
+@media(max-width : 1650px){
+    .container{
+        max-width: 90%; 
+    }
+    
+} 
+@media(max-width : 790px){
+    table{
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
 nav li:last-child a{
     background-color: $primary;
     &:hover{
@@ -129,7 +143,11 @@ section.cart{
     border-radius: 100%;
     box-shadow: 0 0 1px 10px $secondary; //so that vertical lines do not touch the dots
 }
-
+@media(max-width:768px){ 
+    .status_line span::before{
+        font-size: 30px;
+    }
+}
 .status_line:nth-child(1) span:before {
     content: '\f46c';
 }
