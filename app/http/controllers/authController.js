@@ -4,9 +4,9 @@ const passport = require('passport');
 
 function authController() {
     const _getUrl = req => {
-        if(req.user.role === "admin"){
+        if (req.user.role === "admin") {
             return '/admin/orders';
-        } 
+        }
         return '/customers/orders';
     }
     //factory function: returns object
@@ -14,19 +14,19 @@ function authController() {
         login(req, res) {
             res.render("auth/login");
         },
-        postLogin(req, res){
+        postLogin(req, res) {
             passport.authenticate('local', (err, user, flashMsg) => {
-                if(err){
-                    req.flash('err',flashMsg.message);
+                if (err) {
+                    req.flash('err', flashMsg.message);
                     return next(err);
                 }
-                if(!user){
-                    req.flash('err',flashMsg.message);
+                if (!user) {
+                    req.flash('err', flashMsg.message);
                     return res.redirect('/login');
                 }
                 req.logIn(user, err => {
-                    if(err){
-                        req.flash('err',flashMsg.message);
+                    if (err) {
+                        req.flash('err', flashMsg.message);
                         return next(err);
                     }
 
@@ -41,9 +41,15 @@ function authController() {
             const name = req.body.name;
             const email = req.body.email;
             const password = req.body.password;
+            const password2 = req.body.password2;
             //console.log("name email password  "+ name + "  " +email +"  "+ password);
             //if any fielld is missing
-            
+
+            if (password !== password2) {
+                req.flash('err', 'Password do not match');
+                return res.redirect('/register');
+            }
+
             User.exists({ email: email }, (err, result) => {
                 if (result) {
                     req.flash('err', 'Email already exists');
@@ -53,22 +59,22 @@ function authController() {
                 }
             });
             //bcrypt
-            const hashPassword =  await bcrypt.hash(password, 10);
-            
+            const hashPassword = await bcrypt.hash(password, 10);
+
             //New user
             const user = new User({
                 name: name,
                 email: email,
                 password: hashPassword
             });
-            user.save().then((user)=> {
+            user.save().then((user) => {
                 return res.redirect('/');
             }).catch(err => {
                 req.flash('err', 'Something went wrong');
                 return res.redirect('/register');
             })
         },
-        logout(req, res){
+        logout(req, res) {
             req.logout();
             return res.redirect('/login');
         }
