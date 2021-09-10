@@ -472,3 +472,9 @@ section.cart {
 .status_line small {
   float: right;
 }
+
+.home-footer {
+  margin-top: 100px;
+  padding: 1%;
+  font-size: 18px;
+}

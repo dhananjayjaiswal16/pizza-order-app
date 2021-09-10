@@ -1,28 +1,28 @@
 import axios from 'axios';
 import Noty from 'noty';
 import { initAdmin } from './admin';
-import moment from 'moment'; 
+import moment from 'moment';
 
-let addToCart =  document.querySelectorAll('.add-to-cart');
+let addToCart = document.querySelectorAll('.add-to-cart');
 let cartCounter = document.querySelector('.cartCounter');
 
-function updateCart(pizza){
+function updateCart(pizza) {
     // to add data to cart
     //Ajax call
     axios.post('/update-cart', pizza)
-    .then(res => {
-        cartCounter.innerText = res.data.totalQty
-        new Noty({
-            type: 'success',
-            timeout: 1000,
-            progressBar: false,
-            layout: 'bottomRight',
-            text: pizza.name +  " Pizza added to cart"
-          }).show();
-    })
-    .catch(error =>  {
-        console.log("err: " + error); 
-    });
+        .then(res => {
+            cartCounter.innerText = res.data.totalQty
+            new Noty({
+                type: 'success',
+                timeout: 1000,
+                progressBar: false,
+                layout: 'bottomRight',
+                text: pizza.name + " Pizza added to cart"
+            }).show();
+        })
+        .catch(error => {
+            console.log("err: " + error);
+        });
 }
 
 
@@ -31,7 +31,7 @@ addToCart.forEach((btn) => {
     btn.addEventListener("click", (e) => {
         //Fetch data sent from database
         let pizza = JSON.parse(btn.dataset.pizza)
-        updateCart(pizza) 
+        updateCart(pizza)
     });
 })
 
@@ -39,8 +39,7 @@ addToCart.forEach((btn) => {
 
 //alert msg in order.ejs 
 let alerts_msg = document.querySelector('#success-alert');
-console.log("Alerts" + alerts_msg);
-if(alerts_msg){ 
+if (alerts_msg) {
     console.log("Alerts inside If" + alerts_msg);
     setTimeout(() => {
         alerts_msg.remove()
@@ -54,55 +53,71 @@ if(alerts_msg){
 //Render Updated status front End
 let allStatus = document.querySelectorAll('.status_line');
 
-let current_order = document.getElementById('current-order'); 
+let current_order = document.getElementById('current-order');
 let order;
-if(current_order){
+if (current_order) {
     order = current_order.value;
 } else {
     order = null;
 }
 order = JSON.parse(order);
-let time = document.createElement('small'); 
+let time = document.createElement('small');
 
 function updateStatus(order) {
-//     console.log("Order : " +order);
+    //     console.log("Order : " +order);
     allStatus.forEach((status) => {
         status.classList.remove('completed');
         status.classList.remove('current');
     })
     let completed = true;
-    allStatus.forEach((status)=> {
+    allStatus.forEach((status) => {
         let dataValue = status.dataset.current_status;
-        if(completed){
+        if (completed) {
             status.classList.add('completed');
         }
-        if(dataValue === order.status){ 
+        if (dataValue === order.status) {
 
             completed = false;
             time.innerHTML = moment(order.updatedAt).format('hh:mm A');
             status.appendChild(time);
-            if(status.nextElementSibling){
-                status.nextElementSibling.classList.add('current'); 
+            if (status.nextElementSibling) {
+                status.nextElementSibling.classList.add('current');
             }
         }
-    })    
+    })
 }
 
-updateStatus(order); 
+updateStatus(order);
+
+const paymentForm = document.getElementById('payment');
+paymentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(paymentForm);
+    let formObject = {};
+    for (let [key, value] of formData.entries()) {
+        formObject[key] = value;
+    }
+    axios.post('/orders', formObject)
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
 
 
-//Socket.io
 // Socket
 let socket = io()
 
 // Join
-if(order) {
+if (order) {
     socket.emit('join', `order_${order._id}`)
 }
 
 let adminAreaPath = window.location.pathname
 
-if(adminAreaPath.includes('admin')) {
+if (adminAreaPath.includes('admin')) {
     initAdmin(socket);
     socket.emit('join', 'adminRoom');
 }
@@ -119,5 +134,5 @@ socket.on('orderUpdated', (data) => {
         progressBar: false,
         layout: 'bottomRight',
         text: " Order has been updated"
-      }).show();
-}) 
+    }).show();
+})

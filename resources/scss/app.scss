@@ -1,206 +1,207 @@
-@import './variables';
+@import "./variables";
 @import "~noty/src/noty.scss";
 @import "~noty/src/themes/mint.scss";
 
-body{
-    font-family: 'Lato', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    color: $dark;
+body {
+  font-family: "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: $dark;
 }
 
-@media(max-width : 1650px){
-    .container{
-        max-width: 90%; 
-    }
-    
-} 
-@media(max-width : 790px){
-    table{
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
+@media (max-width: 1650px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media (max-width: 790px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
 
-nav li:last-child a{
-    background-color: $primary;
-    &:hover{
-        background-color: $primary-hover;
-    }
+nav li:last-child a {
+  background-color: $primary;
+  &:hover {
+    background-color: $primary-hover;
+  }
 }
 
-nav li a{
-    transition: $smooth;
-    &:hover{
-        color: $primary;
-    }
+nav li a {
+  transition: $smooth;
+  &:hover {
+    color: $primary;
+  }
 }
 
 // header
-.hero{
-    background-color: $secondary;
+.hero {
+  background-color: $secondary;
 }
 
 //button animation
-.btn-primary{
-    background-color: $primary;
-    color: $pure;
-    transition: $smooth;
-    &:hover{
-        background-color: $primary-hover;
-    }
+.btn-primary {
+  background-color: $primary;
+  color: $pure;
+  transition: $smooth;
+  &:hover {
+    background-color: $primary-hover;
+  }
 }
 
 //menu-cards
-.size{
-    background-color: $secondary;
+.size {
+  background-color: $secondary;
 }
 
 //Add button to Menu
-.add-to-cart{
-    border: 2px solid $primary;
-    color: $primary;
-    transition: $smooth;
-    &:hover{
-        background-color: $primary;
-        border-color: $pure;
-        color: $pure;
-    }
-    &:focus{
-        outline: none;
-    }
+.add-to-cart {
+  border: 2px solid $primary;
+  color: $primary;
+  transition: $smooth;
+  &:hover {
+    background-color: $primary;
+    border-color: $pure;
+    color: $pure;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
 //Cart
-section.cart{
-    background-color: $secondary;
+section.cart {
+  background-color: $secondary;
 }
 
-.amount{
-    color : $primary;
+.amount {
+  color: $primary;
 }
-
 
 //Login | Register
-.login{
-    background-color: $secondary;
-    height: calc(100vh - 90px);
-    a{
-        color: $primary;
-        &:hover{
-            color: $primary-hover;
-        }
+.login {
+  background-color: $secondary;
+  height: calc(100vh - 90px);
+  a {
+    color: $primary;
+    &:hover {
+      color: $primary-hover;
     }
+  }
 }
 
-
-
-.noty_theme__mint{
-    border-radius: 50px!important;
-    padding-left: 10px!important;
+.noty_theme__mint {
+  border-radius: 50px !important;
+  padding-left: 10px !important;
 }
-
 
 //Orders page Link
-.link{
-    color: $primary;
+.link {
+  color: $primary;
 }
 
-.orderStatus{
-    background-color: $secondary;
-    min-height: calc(100vh - 86px);
+.orderStatus {
+  background-color: $secondary;
+  min-height: calc(100vh - 86px);
 }
 
-.status-box ul{
-    margin-left: 93px; 
+.status-box ul {
+  margin-left: 93px;
 }
 //single selection page Doc
-.dots{
-    position: relative;
-    padding-left: 25px;
+.dots {
+  position: relative;
+  padding-left: 25px;
 }
 
-.dots:before{
-   font-family: "Font Awesome 5 Free";
-   font-size: 40px;
-   font-weight: 600;
-    position: absolute;
-    left: -90px;
-    top: 50%;
-    color: inherit;
-    transform: translateY(-50%);
+.dots:before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 40px;
+  font-weight: 600;
+  position: absolute;
+  left: -90px;
+  top: 50%;
+  color: inherit;
+  transform: translateY(-50%);
 }
 
-.dots:after{
-   content: '';
-    position: absolute;
-    left: -10px;
-    top: 50%;
-    background-color: $dark;
-    width: 10px;
-    height: 10px;
-    transform: translateY(-50%);
-    border-radius: 100%;
-    box-shadow: 0 0 1px 10px $secondary; //so that vertical lines do not touch the dots
+.dots:after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  background-color: $dark;
+  width: 10px;
+  height: 10px;
+  transform: translateY(-50%);
+  border-radius: 100%;
+  box-shadow: 0 0 1px 10px $secondary; //so that vertical lines do not touch the dots
 }
-@media(max-width:768px){ 
-    .status_line span::before{
-        font-size: 30px;
-    }
+@media (max-width: 768px) {
+  .status_line span::before {
+    font-size: 30px;
+  }
 }
 .status_line:nth-child(1) span:before {
-    content: '\f46c';
+  content: "\f46c";
 }
-.status_line:nth-child(2) span:before{
-    content: '\f560';
+.status_line:nth-child(2) span:before {
+  content: "\f560";
 }
-.status_line:nth-child(3) span:before{
-    content: '\f818';
+.status_line:nth-child(3) span:before {
+  content: "\f818";
 }
-.status_line:nth-child(4) span:before{
-    content: '\f0d1';
+.status_line:nth-child(4) span:before {
+  content: "\f0d1";
 }
-.status_line:nth-child(5) span:before{
-    content: '\f582'; 
+.status_line:nth-child(5) span:before {
+  content: "\f582";
 }
 
-.status_line{
-    position: relative;
+.status_line {
+  position: relative;
 }
 //Vertical  Line
 .status_line:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -6px;
-    width: 2px;
-    height: 100%;
-    background-color: $dark;
-    margin-top: 10px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -6px;
+  width: 2px;
+  height: 100%;
+  background-color: $dark;
+  margin-top: 10px;
 }
 //To avoid extra line at the end
 .status-box ul li:nth-child(5) span:after {
-    box-shadow:0 20px 1px 20px $secondary;
+  box-shadow: 0 20px 1px 20px $secondary;
 }
 //To change colour of completed order
-.completed::before{
-    background-color: $gray;
+.completed::before {
+  background-color: $gray;
 }
-.completed span::after{
-    background-color: $gray;
+.completed span::after {
+  background-color: $gray;
 }
-.completed span{  
-    color: $gray;
-}
-
-//Current Status 
-.current span{
-    color: $primary;
-}
-.current span::after{
-    background-color: $primary;
+.completed span {
+  color: $gray;
 }
 
-.status_line small{ 
-    float: right;
+//Current Status
+.current span {
+  color: $primary;
+}
+.current span::after {
+  background-color: $primary;
+}
+
+.status_line small {
+  float: right;
+}
+
+.home-footer {
+  margin-top: 100px;
+  padding: 1%;
+  font-size: 18px;
 }

@@ -14,7 +14,10 @@
                     <h1><%= pizza.items.name %></h1>
                     <span><%= pizza.items.size %></span>
                 </div>
-                <span class="flex-1"><%= pizza.qty %> Pcs</span>
+                <div class="flex-1">
+                    <span><%= pizza.qty %> Pcs</span>
+                    <!-- <button class="ml-4" id="deleteCartButton" data-pizzaId="<%= pizza.items._id %>" ><i class="far fa-trash-alt"></i></button> -->
+                </div>
                 <span class="font-bold text-lg">  <%=pizza.qty%> x ₹<%= pizza.items.price%> <br> = ₹<%= pizza.items.price * pizza.qty%> </span>
             </div>
             <% } %>
@@ -28,7 +31,7 @@
             </div>
             <% if(user){ %>
             <div>
-                <form action="/orders" method="POST" class="mt-12" >
+                <form id="payment" action="/orders" method="POST" class="mt-12" >
                     <input name="phone" class="border border-gray-400 p-2 w-1/2" type="text" placeholder="Phone No.">
                     <input name="address" class="border border-gray-400 p-2 w-1/2 mt-4" type="text" placeholder="Address">
                     <br>
