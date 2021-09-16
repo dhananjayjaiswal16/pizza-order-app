@@ -3,34 +3,37 @@ const moment = require('moment');
 function orderController() {
     return {
         store(req, res) {
-
             const { phone, address } = req.body;
+            console.log(phone, address);
             if (!phone || !address) {
-                req.flash('error', 'Enter all required fields')
-                res.redirect('/cart')
+                return res.json({ msg: 'Enter all required fields' });
+                // req.flash('error', 'Enter all required fields')
+                // res.redirect('/cart')
             }
             const order = new Order({
                 userId: req.user._id,
                 items: req.session.cart.items,
-                phone: phone,
-                address: address
+                phone,
+                address
             })
-            order.save().then(result => {
-                Order.populate(result, { path: 'userId' }, (err, placedOrder) => {
-                    req.flash('success', 'Order Placed! Yayy!');
-                    delete req.session.cart;
+            order.save()
+                .then(result => {
+                    Order.populate(result, { path: 'userId' }, (err, placedOrder) => {
+                        // req.flash('success', 'Order Placed! Yayy!');
+                        delete req.session.cart;
 
-                    //event emitter
-                    const eventEmitter = req.app.get('eventEmitter');
-                    eventEmitter.emit('orderPlaced', placedOrder);
+                        //event emitter
+                        const eventEmitter = req.app.get('eventEmitter');
+                        eventEmitter.emit('orderPlaced', placedOrder);
+                        return res.json({ msg: 'Order Placed! Yayy!' });
+                        // return res.redirect('/customers/orders');
+                    })
 
-                    return res.redirect('/customers/orders');
                 })
-
-            }).catch(error => {
-                req.flash('err', 'Something went wrong')
-                return res.redirect('/cart');
-            })
+                .catch(error => {
+                    return res.json({ msg: 'Something went wrong' })
+                    //return res.redirect('/cart');
+                })
         },
         async index(req, res) {
             try {

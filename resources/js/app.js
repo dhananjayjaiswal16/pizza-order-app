@@ -3,6 +3,8 @@ import Noty from 'noty';
 import { initAdmin } from './admin';
 import moment from 'moment';
 
+import { initStripe } from './stripe';
+
 let addToCart = document.querySelectorAll('.add-to-cart');
 let cartCounter = document.querySelector('.cartCounter');
 
@@ -89,22 +91,10 @@ function updateStatus(order) {
 
 updateStatus(order);
 
-const paymentForm = document.getElementById('payment');
-paymentForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(paymentForm);
-    let formObject = {};
-    for (let [key, value] of formData.entries()) {
-        formObject[key] = value;
-    }
-    axios.post('/orders', formObject)
-        .then((res) => {
-            console.log(res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-})
+
+
+initStripe();
+
 
 
 // Socket
