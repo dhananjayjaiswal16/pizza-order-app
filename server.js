@@ -8,11 +8,11 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
 const MongoDbStore = require('connect-mongo');
-const passport = require('passport'); 
+const passport = require('passport');
 const Emitter = require('events');
 
 //database-connect
-const url = "mongodb://localhost:27017/pizza"
+const url = process.env.MONGO_URL;
 mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: true });
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -23,7 +23,7 @@ connection.once('open', () => {
 
 //event emitter for Socket
 const eventEmitter = new Emitter();
-app.set('eventEmitter', eventEmitter ); 
+app.set('eventEmitter', eventEmitter);
 
 // Session config
 app.use(session({
@@ -46,7 +46,7 @@ app.use(passport.session());
 
 
 app.use(flash());
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 
 
@@ -73,6 +73,9 @@ app.set('view engine', 'ejs');
 
 //Routes
 require('./routes/web.js')(app);
+app.use((req, res) => {
+    res.status(404).render('errors/404');
+})
 
 
 const PORT = process.env.PORT || 3000;
@@ -81,13 +84,12 @@ const server = app.listen(PORT, () => {
 });
 
 //Socket
-
 const io = require('socket.io')(server)
 io.on('connection', (socket) => {
-      // Join
-      socket.on('join', (orderId) => {
+    // Join
+    socket.on('join', (orderId) => {
         socket.join(orderId)
-      })
+    })
 })
 
 eventEmitter.on('orderUpdated', (data) => {
