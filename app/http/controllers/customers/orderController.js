@@ -37,10 +37,12 @@ function orderController() {
                                         // console.log('result', result);
 
                                         //event emitter
+                                        delete req.session.cart;
+
                                         const eventEmitter = req.app.get('eventEmitter');
                                         eventEmitter.emit('orderPlaced', result);
 
-                                        delete req.session.cart;
+
                                         return res.json({ msg: 'Payment done and Order Placed!! Yayy!' });
                                     })
                                     .catch((err) => {
@@ -53,7 +55,10 @@ function orderController() {
                         } else {
                             delete req.session.cart;
 
-                            return res.json({ msg: 'Order placed succesfully' })
+                            const eventEmitter = req.app.get('eventEmitter');
+                            eventEmitter.emit('orderPlaced', placedOrder);
+
+                            return res.json({ msg: 'Order placed succesfully! Pay at time of delivery' })
                         }
                         // return res.redirect('/customers/orders');
                     })
