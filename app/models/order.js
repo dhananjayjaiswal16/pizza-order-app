@@ -8,12 +8,13 @@ const orderSchema = new Schema({
         ref: 'User',
         required: true
     },
-    items: {type: Object, required:true },
-    phone: {type : Number, required: true},
-    address: {type : String, required: true},
-    paymentType: {type:String, default: 'Cash on Delivery' }, 
-    status: {type: String, default: 'order_placed'}
-},{
+    items: { type: Object, required: true },
+    phone: { type: Number, required: true },
+    address: { type: String, required: true },
+    paymentType: { type: String, default: 'Cash on Delivery' },
+    paymentStatus: { type: Boolean, default: false },
+    status: { type: String, default: 'order_placed' }
+}, {
     timestamps: true
 });
 

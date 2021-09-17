@@ -55,6 +55,7 @@ export const initStripe = async () => {
                 formObject[key] = value;
             }
 
+            //function for ajax calling
             const placeOrder = (formObject) => {
                 axios.post('/orders', formObject)
                     .then((res) => {
@@ -78,6 +79,9 @@ export const initStripe = async () => {
                         }).show();
                     })
             }
+
+
+
             if (!card) {
                 placeOrder(formObject);
 

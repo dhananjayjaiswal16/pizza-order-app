@@ -2301,7 +2301,8 @@ var initStripe = /*#__PURE__*/function () {
                         value = _step$value[1];
 
                     formObject[key] = value;
-                  }
+                  } //function for ajax calling
+
                 } catch (err) {
                   _iterator.e(err);
                 } finally {
