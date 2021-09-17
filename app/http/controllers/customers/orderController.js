@@ -6,7 +6,7 @@ function orderController() {
     return {
         store(req, res) {
             const { phone, address, stripeToken, paymentType } = req.body;
-            console.log(phone, address);
+            // console.log(phone, address);
             if (!phone || !address) {
                 return res.status(422).json({ msg: 'Enter all required fields' });
                 // req.flash('error', 'Enter all required fields')
@@ -50,6 +50,10 @@ function orderController() {
                                 delete req.session.cart;
                                 return res.json({ msg: 'Payment failed, Please pay at time of delivery' });
                             })
+                        } else {
+                            delete req.session.cart;
+
+                            return res.json({ msg: 'Order placed succesfully' })
                         }
                         // return res.redirect('/customers/orders');
                     })
