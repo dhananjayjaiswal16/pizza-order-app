@@ -60,13 +60,13 @@ function orderController() {
 
                             return res.json({ msg: 'Order placed succesfully! Pay at time of delivery' })
                         }
-                        // return res.redirect('/customers/orders');
+
                     })
 
                 })
                 .catch(error => {
                     return res.status(500).json({ msg: 'Something went wrong' })
-                    //return res.redirect('/cart');
+
                 })
         },
         async index(req, res) {
