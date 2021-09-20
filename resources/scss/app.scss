@@ -240,11 +240,20 @@ section.cart {
   padding: 40px 0;
   background: #fff;
 }
+.content404 {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+.content_box_404 {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
 
 .four_zero_four_bg {
   background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-  height: 500px;
+  height: 600px;
   width: 800px;
   background-position: center;
-  margin: 0 auto;
 }
