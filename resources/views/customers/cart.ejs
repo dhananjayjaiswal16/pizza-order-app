@@ -34,7 +34,7 @@
                 <form id="payment" action="/orders" method="POST" class="mt-12" >
 
 
-                    <div class="relative w-1/2 ml-auto mb-4">
+                    <div class="relative md:w-3/4 ml-auto mb-4">
                         <select id="paymentType" name="paymentType" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
                           <option value="cod">Cash on delivery</option>
                           <option value="card">Card Payment</option>
@@ -45,10 +45,10 @@
                       </div>
 
 
-                    <input name="phone" class="border border-gray-400 p-2 w-1/2" type="text" placeholder="Phone No.">
-                    <input name="address" class="border border-gray-400 p-2 w-1/2 mt-4" type="text" placeholder="Address">
+                    <input name="phone" class="border w-full md:w-3/4 border-gray-400 p-2" type="text" placeholder="Phone No.">
+                    <input name="address" class="border w-full md:w-3/4 border-gray-400 p-2 mt-4" type="text" placeholder="Address">
                     <br>
-                    <div class="mt-4" id="card-element"></div>
+                    <div class="mt-4 w-full md:w-3/4" id="card-element"></div>
                     <button class="btn-primary py-2 px-6 rounded-full text-white mt-4" type="submit">Order Now</button>
                 </form>
             </div>
