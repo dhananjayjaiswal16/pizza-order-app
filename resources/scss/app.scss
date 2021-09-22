@@ -22,7 +22,9 @@ body {
     white-space: nowrap;
   }
 }
-
+.fa-shopping-cart {
+  color: $pure;
+}
 nav li:last-child a {
   background-color: $primary;
   &:hover {
