@@ -2,7 +2,6 @@
   "name": "realtime-pizza",
   "version": "1.0.0",
   "description": "Real time pizza application",
-  "main": "index.js",
   "author": "Dhananjay Jaiswal",
   "license": "MIT",
   "scripts": {
