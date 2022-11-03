@@ -2,59 +2,65 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJ's Pizza App</title>
-    <link rel="shortcut icon" href="/public/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ's Pizza App</title>
+  <link rel="shortcut icon" href="/public/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
     integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <!-- ************************************************GOOGLE FONTS******************************************** -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- ************************************************GOOGLE FONTS******************************************** -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <!-- **********************************************Tailwind css********************************************** -->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <!-- **********************************************Tailwind css********************************************** -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-    <!-- ************************************************CSS LINK************************************************ -->
-    <link rel="stylesheet" href="/css/app.css">
+  <!-- ************************************************CSS LINK************************************************ -->
+  <link rel="stylesheet" href="/css/app.css">
 </head>
 
 <body>
-    <!-- ***********************************NAVBAR*************************** -->
-    <nav class="container mx-auto flex items-center justify-between py-4">
-        <div>
-            <a href="/"><img src="/img/logo.png" alt=""></a>
-        </div>
-        <div>
-            <ul class="flex items-center">
-                <li class="ml-6 "><a href="#menu">Menu</a></li>
-                <%if(user) {%>
-                    <li class="ml-6 ">
-                        <form id="logout" action="/logout" method="POST"></form>
-                        <a onclick="document.getElementById('logout').submit()" href="#">LogOut</a>
-                    </li>
-                    <li class="ml-6 "><a href="/customers/orders">Previous Orders</a></li>
-                <%} else { %>
-                    <li class="ml-6 "><a href="/register">Register</a></li>
-                    <li class="ml-6 "><a href="/login">Login</a></li>
+  <!-- ***********************************NAVBAR*************************** -->
+  <nav class="container mx-auto flex items-center justify-between py-4">
+    <div>
+      <a href="/"><img src="/img/logo.png" alt=""></a>
+    </div>
+    <div>
+      <ul class="flex items-center">
+        <li class="ml-6 "><a href="/#menu">Menu</a></li>
+        <%if(user) {%>
+          <li class="ml-6 ">
+            <form id="logout" action="/logout" method="POST"></form>
+            <a onclick="document.getElementById('logout').submit()" href="#">LogOut</a>
+          </li>
+          <li class="ml-6 ">
+            <%if(user.role==="admin") {%>
+              <a href="/admin/orders">Upcoming Orders</a>
+              <%} else { %>
+                <a href="/customers/orders">Previous Orders</a>
                 <% } %>
+          </li>
+          <%} else { %>
+            <li class="ml-6 "><a href="/register">Register</a></li>
+            <li class="ml-6 "><a href="/login">Login</a></li>
+            <% } %>
 
-                    <li class="ml-6"><a href="/cart" class="inline-block px-4 py-1 rounded-full flex items-center">
-                    <span class="cartCounter text-white font-bold pr-1">
-                        <%= session.cart? session.cart.totalQty : '' %>
-                    </span>
-                    <!-- <img src="/img/cart.png" alt="cart"></a></li> -->
-                    <i class="fas fa-shopping-cart"></i></a></li>
-                    
-            </ul>
-        </div>
-    </nav>
-    <%- body%>
+              <li class="ml-6"><a href="/cart" class="inline-block px-4 py-1 rounded-full flex items-center">
+                  <span class="cartCounter text-white font-bold pr-1">
+                    <%= session.cart? session.cart.totalQty : '' %>
+                  </span>
+                  <!-- <img src="/img/cart.png" alt="cart"></a></li> -->
+                  <i class="fas fa-shopping-cart"></i></a></li>
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/app.js"></script>
+      </ul>
+    </div>
+  </nav>
+  <%- body%>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>

@@ -1,61 +1,63 @@
 <section class="login pt-24">
-    <div class="flex items-center justify-center">
-        <div class="w-full max-w-md">
-            <form action="/register" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4">
-                
-                <% if(messages.err) { %>
-                <span class="text-red-600 text-sm"> <%= messages.err %> </span>
-                <% } %>
+  <div class="flex items-center justify-center">
+    <div class="w-full max-w-md">
+      <form action="/register" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4">
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-normal mb-2" for="username">
-                        Name
-                    </label>
-                    <input name="name"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        v-model="form.email" type="text" required autofocus placeholder="Name" />
-                </div>
+        <% if(messages.err) { %>
+          <span class="text-red-600 text-sm">
+            <%= messages.err %>
+          </span>
+          <% } %>
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-normal mb-2" for="username">
-                        Email
-                    </label>
-                    <input name="email"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        v-model="form.email" type="email" required autofocus placeholder="Email" />
-                </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-normal mb-2" for="username">
+                Name
+              </label>
+              <input name="name"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                v-model="form.email" type="text" required autofocus placeholder="Name" />
+            </div>
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-                        Password
-                    </label>
-                    <input name="password"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        v-model="form.password" type="password" placeholder="Password" required
-                        autocomplete="current-password" />
-                </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-normal mb-2" for="username">
+                Email
+              </label>
+              <input name="email"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                v-model="form.email" type="email" required autofocus placeholder="Email" />
+            </div>
 
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-                        Re-enter Password
-                    </label>
-                    <input name="password2"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        v-model="form.password" type="password" placeholder="Password" required
-                        autocomplete="current-password" />
-                </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
+                Password
+              </label>
+              <input name="password"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                v-model="form.password" type="password" placeholder="Password" required
+                autocomplete="current-password" />
+            </div>
 
-                <div class="flex items-center justify-between">
-                    <button class="btn-primary px-4 py-2 rounded-full text-white inline-block shadow-lg " type="submit">Register</button>
-                    <a class="inline-block align-baseline font-normal text-sm"
-                        href="/login">
-                        Already have an account?
-                    </a>
-                </div>
-            </form>
-            <p class="text-center text-gray-500 text-xs">
-                &copy;2021 Dhananjay Jaiswal
-            </p>
-        </div>
+            <div class="mb-6">
+              <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
+                Re-enter Password
+              </label>
+              <input name="password2"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                v-model="form.password" type="password" placeholder="Password" required
+                autocomplete="current-password" />
+            </div>
+
+            <div class="flex items-center justify-between">
+              <button class="btn-primary px-4 py-2 rounded-full text-white inline-block shadow-lg "
+                type="submit">Register</button>
+              <a class="inline-block align-baseline font-normal text-sm" href="/login">
+                Already have an account?
+              </a>
+            </div>
+      </form>
+      <p class="text-center text-gray-500 text-xs">
+        &copy;2022 Dhananjay Jaiswal
+      </p>
     </div>
+  </div>
 </section>
