@@ -41,7 +41,7 @@ password: password123
 ### Admin
 email: admin@gmail.com 
 
-password: password123
+password: admin123
 ## Tech Stack
 
 **Client:** EJS, Saas, TailwindCSS
