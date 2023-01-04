@@ -1,5 +1,5 @@
 
-# Project Title
+# Pizza Order
 
 A pizza store web app that lets you order your favourite pizza with few clicks.
 
